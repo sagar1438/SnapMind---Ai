@@ -44,7 +44,35 @@ def insert_screenshot(image_path, extracted_text, title, summary, tags):
     return new_id
 
 
+def get_all_screenshots():
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM screenshots ORDER BY upload_date DESC")
+    rows = cursor.fetchall()
+    conn.close()
+    return [dict(row) for row in rows]
 
+
+def get_screenshot_by_id(screenshot_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM screenshots WHERE id = ?", (screenshot_id,))
+    row = cursor.fetchone()
+    conn.close()
+    return dict(row) if row else None
+
+
+def search_screenshots(query):
+    conn = get_connection()
+    cursor = conn.cursor()
+    like_query = f"%{query}%"
+    cursor.execute("""
+        SELECT * FROM screenshots
+        WHERE title LIKE ? OR summary LIKE ? OR tags LIKE ? OR extracted_text LIKE ?
+        ORDER BY upload_date DESC
+    """, (like_query, like_query, like_query, like_query))
+    rows = cursor.fetchall()
+    conn.close()
     return [dict(row) for row in rows]
 
 
@@ -68,3 +96,13 @@ def update_screenshot(screenshot_id, title=None, summary=None, tags=None):
     conn.close()
 
     return get_screenshot_by_id(screenshot_id)
+
+
+def delete_screenshot(screenshot_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM screenshots WHERE id = ?", (screenshot_id,))
+    conn.commit()
+    deleted = cursor.rowcount > 0
+    conn.close()
+    return deleted
