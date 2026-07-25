@@ -32,4 +32,6 @@ Text:
             "summary": data.get("summary", ""),
             "tags": data.get("tags", "")
         }
- 
+    except Exception as e:
+        print(f"AI metadata generation failed: {e}")
+        return {"title": "Untitled", "summary": "", "tags": ""}
