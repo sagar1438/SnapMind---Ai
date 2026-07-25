@@ -22,3 +22,14 @@ Text:
 {extracted_text}
 """
 
+    try:
+        response = model.generate_content(prompt)
+        raw = response.text.strip()
+        raw = raw.replace("```json", "").replace("```", "").strip()
+        data = json.loads(raw)
+        return {
+            "title": data.get("title", "Untitled"),
+            "summary": data.get("summary", ""),
+            "tags": data.get("tags", "")
+        }
+ 
