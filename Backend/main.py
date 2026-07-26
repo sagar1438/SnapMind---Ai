@@ -79,3 +79,14 @@ def edit_screenshot(screenshot_id: int, title: str = None, summary: str = None, 
     return updated
 
 
+@app.delete("/screenshots/{screenshot_id}")
+def remove_screenshot(screenshot_id: int):
+    screenshot = database.get_screenshot_by_id(screenshot_id)
+    if not screenshot:
+        raise HTTPException(status_code=404, detail="Screenshot not found")
+
+    if os.path.exists(screenshot["image_path"]):
+        os.remove(screenshot["image_path"])
+
+    database.delete_screenshot(screenshot_id)
+    return {"message": "Deleted successfully"}
