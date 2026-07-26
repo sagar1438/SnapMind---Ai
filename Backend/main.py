@@ -71,3 +71,11 @@ def get_screenshot(screenshot_id: int):
     return screenshot
 
 
+@app.patch("/screenshots/{screenshot_id}")
+def edit_screenshot(screenshot_id: int, title: str = None, summary: str = None, tags: str = None):
+    updated = database.update_screenshot(screenshot_id, title=title, summary=summary, tags=tags)
+    if not updated:
+        raise HTTPException(status_code=404, detail="Screenshot not found")
+    return updated
+
+
