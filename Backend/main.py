@@ -51,3 +51,23 @@ async def upload_screenshot(file: UploadFile = File(...)):
     )
 
     return database.get_screenshot_by_id(new_id)
+
+
+@app.get("/screenshots")
+def list_screenshots():
+    return database.get_all_screenshots()
+
+
+@app.get("/screenshots/search")
+def search_screenshots(q: str):
+    return database.search_screenshots(q)
+
+
+@app.get("/screenshots/{screenshot_id}")
+def get_screenshot(screenshot_id: int):
+    screenshot = database.get_screenshot_by_id(screenshot_id)
+    if not screenshot:
+        raise HTTPException(status_code=404, detail="Screenshot not found")
+    return screenshot
+
+
