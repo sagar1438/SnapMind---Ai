@@ -52,3 +52,24 @@ input {
   background-color: #F8F9FC;
 }
 
+.btn-danger {
+  background-color: #fff;
+  color: #DC2626;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(17, 24, 39, 0.08);
+  transform: translateY(-2px);
+}
