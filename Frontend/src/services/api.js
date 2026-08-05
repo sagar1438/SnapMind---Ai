@@ -12,3 +12,7 @@ export const uploadScreenshot = (file) => {
   })
 }
 
+export const getAllScreenshots = () => api.get('/screenshots')
+
+export const getScreenshotById = (id) => api.get(`/screenshots/${id}`)
+
