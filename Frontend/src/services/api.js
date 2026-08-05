@@ -16,3 +16,14 @@ export const getAllScreenshots = () => api.get('/screenshots')
 
 export const getScreenshotById = (id) => api.get(`/screenshots/${id}`)
 
+export const searchScreenshots = (query) => api.get('/screenshots/search', {
+  params: { q: query }
+})
+
+export const updateScreenshot = (id, data) => api.patch(`/screenshots/${id}`, null, {
+  params: data
+})
+
+export const deleteScreenshot = (id) => api.delete(`/screenshots/${id}`)
+
+export default api
