@@ -12,3 +12,36 @@ function Navbar() {
     }
   }
 
+  return (
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      padding: '12px 24px',
+      background: '#fff',
+      borderBottom: '1px solid #E5E7EB'
+    }}>
+      <Link to="/" style={{ fontWeight: 500, fontSize: '16px', color: '#111827' }}>
+        SnapMind AI
+      </Link>
+
+      <form onSubmit={handleSearch} style={{ flex: 1, maxWidth: '360px', margin: '0 24px' }}>
+        <input
+          type="text"
+          placeholder="Search screenshots..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          style={{
+            width: '100%',
+            height: '36px',
+            padding: '0 12px',
+            border: '1px solid #E5E7EB',
+            borderRadius: '8px',
+            fontSize: '13px',
+            background: '#F8F9FC',
+            color: '#111827'
+          }}
+        />
+      </form>
+
+}
