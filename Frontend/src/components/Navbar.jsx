@@ -48,7 +48,20 @@ function Navbar() {
         <button className="btn-primary" onClick={() => navigate('/upload')}>
           Upload
         </button>
-        
+        <div style={{
+          width: '30px',
+          height: '30px',
+          borderRadius: '50%',
+          background: '#6366F1',
+          color: '#fff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '12px',
+          fontWeight: 500
+        }}>
+          S
+        </div>
       </div>
     </div>
   )
