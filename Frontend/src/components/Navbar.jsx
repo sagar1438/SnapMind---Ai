@@ -44,4 +44,14 @@ function Navbar() {
         />
       </form>
 
+      <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+        <button className="btn-primary" onClick={() => navigate('/upload')}>
+          Upload
+        </button>
+        
+      </div>
+    </div>
+  )
 }
+
+export default Navbar
